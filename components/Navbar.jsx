@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 
 const Navbar = () => {
@@ -8,6 +8,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await logOut();
+      Navigate('/')
     } catch (error) {
       console.log(error);
     }
@@ -22,14 +23,14 @@ const Navbar = () => {
 
       {user?.email ? (
         <div>
-          <Link to="/account">
+          <Link to="/Account">
             <button className="pr-4 text-white">Account</button>
           </Link>
-          <Link to="/signup">
-            <button className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">
+         
+            <button  onClick = {handleLogout} className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">
               Log Out
             </button>
-          </Link>
+          
         </div>
       ) : (
         <div>
